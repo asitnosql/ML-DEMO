@@ -1,0 +1,14 @@
+﻿<rdf:RDF 
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+   	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:db="http://dbpedia.org/resource/" 
+	xmlns:onto="http://dbpedia.org/ontology/"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+	<rdf:Description rdf:about="http://dbpedia.org/resource/Seahorse">
+		<rdf:type rdf:resource="http://dbpedia.org/ontology/Animal" /> 
+		<rdf:type rdf:resource="http://dbpedia.org/ontology/Fish" /> 
+		<owl:sameAs rdf:resource="http://es.dbpedia.org/resource/Hippocampus" />
+		<rdfs:comment>Seahorse is the name given to 54 species of small marine fishes in the genus Hippocampus.</rdfs:comment>
+   </rdf:Description>
+</rdf:RDF>

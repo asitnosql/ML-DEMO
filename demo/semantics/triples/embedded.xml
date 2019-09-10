@@ -1,0 +1,28 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<envelope>
+<sem:triples xmlns:sem="http://marklogic.com/semantics"> 
+<sem:triple>
+<sem:subject>http://mlu.marklogic.com/game/20160504-liv-rcs</sem:subject>
+<sem:predicate>http://mlu.marklogic.com/winningTeam</sem:predicate>
+<sem:object>http://dbpedia.org/resource/Liverpool_F.C.</sem:object>
+</sem:triple>
+<sem:triple>
+<sem:subject>http://dbpedia.org/resource/Sam_Smith</sem:subject>
+<sem:predicate>http://mlu.marklogic.com/hasInjury</sem:predicate>
+<sem:object datatype="http://www.w3.org/2001/XMLSchema#string">Knee</sem:object>
+</sem:triple>
+<sem:triple>
+<sem:subject>http://dbpedia.org/resource/Bob_Jones</sem:subject>
+<sem:predicate>http://mlu.marklogic.com/hasInjury</sem:predicate>
+<sem:object datatype="http://www.w3.org/2001/XMLSchema#string">Hamstring</sem:object>
+</sem:triple>
+</sem:triples>
+<article>
+<id>20160504-liv-rcs</id>
+<title>Liverpool Beats RCS Despite Injuries</title>
+<content>
+<p>An exciting game from the start, Liverpool's Sam Smith scored twice in the first five minutes, despite colliding with Bob Jones. With a critical knee injury, Smith was then replaced by Spanish-born new boy Diego. RCS started to rebound, just after the hour-mark, with Bob Jones rising higher than anyone in the penalty area to head home from a corner.</p>
+<p>Unfortunately Jones' luck didn't stay with him as, in the second half, Jones pulled up with a hamstring injury and had to be carried off on a stretcher. It looked the kind injury that won?t heal in short order. Replaced by Kenny Kent, RCS couldn't stop Liverpool as, twelve minutes from time, Diego made it 3-1.</p>
+</content> 
+</article>
+</envelope>

@@ -1,0 +1,7 @@
+﻿@prefix db: <http://dbpedia.org/resource/> .
+@prefix onto: <http://dbpedia.org/ontology/> .
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+db:Bob_Seger onto:birthPlace db:Detroit ;
+			 onto:birthDate  "1945-05-06"^^xs:date ;
+			 dc:description "American singer, songwriter, musician"^^xs:string .

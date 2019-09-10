@@ -1,0 +1,2 @@
+﻿<http://dbpedia.org/resource/Michael_Jackson> <http://dbpedia.org/property/netWorth> "US $236 million"^^<http://www.w3.org/2001/XMLSchema#untypedAtomic> .
+<http://dbpedia.org/resource/Michael_Jackson> <http://dbpedia.org/ontology/birthDate> "1958-08-29"^^<http://www.w3.org/2001/XMLSchema#date> .

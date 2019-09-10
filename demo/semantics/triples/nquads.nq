@@ -1,0 +1,16 @@
+﻿<http://dbpedia.org/resource/Carrie_Underwood>
+<http://dbpedia.org/ontology/birthPlace>
+<http://dbpedia.org/resource/Oklahoma> 
+<http://mlu.marklogic.com/music> . 
+<http://dbpedia.org/resource/Carrie_Underwood>
+<http://dbpedia.org/ontology/birthDate>
+"1983-03-10"^^<http://www.w3.org/2001/XMLSchema#date>
+<http://mlu.marklogic.com/music> .
+<http://dbpedia.org/resource/Carrie_Underwood>
+<http://dbpedia.org/ontology/spouseName>
+"Mike Fisher"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://mlu.marklogic.com/music> .
+<http://dbpedia.org/resource/Mark_Twain>
+<http://dbpedia.org/ontology/birthPlace>
+<http://dbpedia.org/resource/Missouri> 
+<http://mlu.marklogic.com/literature> .

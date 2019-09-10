@@ -1,0 +1,10 @@
+﻿<rdf:RDF 
+   	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:db="http://dbpedia.org/resource/" 
+	xmlns:onto="http://dbpedia.org/ontology/">
+	
+	<rdf:Description rdf:about="http://dbpedia.org/resource/David_Bowie">
+		<onto:birthPlace rdf:resource="http://dbpedia.org/resource/London" /> 
+		<onto:birthDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1947-01-08</onto:birthDate>
+   </rdf:Description>
+</rdf:RDF>

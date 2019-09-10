@@ -1,0 +1,149 @@
+ 
+ 1. Load triples 
+ A) MLCP
+ (nquads)
+ 
+ mlcp.bat import -host localhost -port 8000 -username admin ^
+-password admin -database semantic-demo-two -input_file_path C:\Users\MYNAME\Desktop\HCL\semantics\hcl\triples\nquads.nq ^
+-mode local -input_file_type RDF
+
+ (ntriple)
+
+ mlcp.bat import -host localhost -port 8000 -username admin ^
+-password admin -database semantic-demo-two -input_file_path C:\Users\MYNAME\Desktop\HCL\semantics\hcl\triples\ntriples.nt ^
+-mode local -input_file_type RDF
+
+turtle
+
+ mlcp.bat import -host localhost -port 8000 -username admin ^
+-password admin -database semantic-demo-two -input_file_path C:\Users\MYNAME\Desktop\HCL\semantics\hcl\triples\turtle.ttl ^
+-mode local -input_file_type RDF -output_uri_prefix /triplestore/ -output_graph http://mlu.marklogic.com/music
+
+
+B) XQuery
+
+import module namespace sem = "http://marklogic.com/semantics" at "/MarkLogic/semantics.xqy"; 
+
+sem:rdf-load("C:/Users/MYNAME/Desktop/HCL/semantics/hcl/triples/ntriples-more.nt", ("RDF", "graph=http://mlu.marklogic.com/movies"))
+
+sem:rdf-load("C:/Users/MYNAME/Desktop/HCL/semantics/hcl/triples/seahorse-rdf-xml.rdf", ("RDF", "graph=http://mlu.marklogic.com/animals"))
+
+C) In-memory 
+
+xquery version "1.0-ml";
+import module namespace sem = "http://marklogic.com/semantics" at "/MarkLogic/semantics.xqy"; 
+
+sem:rdf-insert(sem:triple(
+sem:iri("http://dbpedia.org/resource/Moneyball_(film)"), sem:iri("http://dbpedia.org/ontology/producer"), 
+sem:iri("http://dbpedia.org/resource/Michael_De_Luca")), "override-graph=http://mlu.marklogic.com/movies") 
+
+D) JavaScript 
+
+'use strict';
+declareUpdate(); 
+var sem = require('/MarkLogic/semantics.xqy'); 
+
+sem.rdfInsert(sem.triple( 
+sem.iri('http://dbpedia.org/resource/Moneyball_(film)'), 
+sem.iri('http://www.w3.org/2000/01/rdf-schema#comment'), 
+'Moneyball is a 2011 American film based on the Michael Lewis 2003 nonfiction book of the same name, providing an account of the Oakland Athletics baseball team 2002 season and attempts by their general manager Billy Beane to assemble a competitive team.'), 
+'override-graph=http://mlu.marklogic.com/movies');
+
+
+===============
+SPARQL 
+
+i.
+ select *
+WHERE {?s ?o ?p}
+
+ii. 
+SELECT ?o
+WHERE {<http://dbpedia.org/resource/Johnny_Depp> <http://dbpedia.org/ontology/birthPlace> ?o}
+
+iii. SELECT ?o ?p
+WHERE {<http://dbpedia.org/resource/Johnny_Depp>  ?o ?p }
+
+iv.
+ SELECT ?o ?p
+WHERE {<http://dbpedia.org/resource/Johnny_Depp>  ?o ?p } 
+
+v.
+SELECT *
+WHERE {?s <http://dbpedia.org/ontology/birthDate> ?o}
+
+vi. 
+SELECT *
+FROM <http://mlu.marklogic.com/movies>
+FROM  <http://mlu.marklogic.com/music>
+WHERE {?s <http://dbpedia.org/ontology/birthDate> ?o}
+
+
+With Prefix
+
+i.  
+SELECT ?dob 
+WHERE { <http://dbpedia.org/resource/Bob_Seger>   <http://dbpedia.org/ontology/birthDate>  ?dob}
+vs
+PREFIX rsrc: <http://dbpedia.org/resource/> 
+PREFIX onto: <http://dbpedia.org/ontology/> 
+
+SELECT ?dob 
+WHERE {rsrc:Bob_Seger onto:birthDate ?dob}
+
+ii. 
+PREFIX onto: <http://dbpedia.org/ontology/> 
+PREFIX xs: <http://www.w3.org/2001/XMLSchema#> 
+
+SELECT ?s 
+WHERE {?s onto:birthDate "1945-05-06"^^xs:date}
+
+
+Labels :
+i.
+import module namespace sem = "http://marklogic.com/semantics" at "/MarkLogic/semantics.xqy"; 
+
+sem:rdf-load("C:/Users/MYNAME/Desktop/HCL/semantics/hcl/triples/mlu.nt", ("ntriple", "graph=http://mlu.marklogic.com/registr"))
+
+ii.
+PREFIX mo: <http://mlu.marklogic.com/ontology/>
+
+SELECT ?course ?student
+WHERE {
+?course mo:student ?student
+}
+
+Functions :
+
+SELECT * 
+FROM <http://mlu.marklogic.com/registr> 
+WHERE {?s ?p ?o . FILTER (regex(?o, "@", "i"))}
+
+
+XQuery to SPARQL :
+i.
+xquery version "1.0-ml";
+import module namespace sem = "http://marklogic.com/semantics" at "/MarkLogic/semantics.xqy";
+
+sem:sparql(
+"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT ?courseLabel 
+WHERE {?course rdfs:label ?courseLabel}"
+)
+
+ii. Passing values in SPARQL query
+
+import module namespace sem = "http://marklogic.com/semantics" at 
+"/MarkLogic/semantics.xqy"; 
+
+let $map := map:map()
+let $_ := map:put($map, "courselabel", "MarkLogic Fundamentals")
+
+return sem:sparql(
+"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX mlu: <http://mlu.marklogic.com/ontology/>
+
+SELECT ?student 
+WHERE {?course rdfs:label $courselabel . ?course mlu:student ?student}", $map
+)
